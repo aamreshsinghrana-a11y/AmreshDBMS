@@ -1,1 +1,2 @@
-# AmreshDBMS
+# DBMS
+DBMS website for collage 
