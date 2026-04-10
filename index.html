@@ -3,300 +3,336 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DBMS Mastery Portal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
+    <title>Database Management System</title>
     <style>
         :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-main: #f8fafc;
-            --text-dim: #94a3b8;
-            --accent-blue: #38bdf8;
-            --accent-yellow: #fbbf24;
-            --accent-green: #22c55e;
-            --card-border: rgba(255, 255, 255, 0.1);
-            --hover-bg: #2d3748;
+            --bg-color: #0b0f1a;
+            --card-bg: #161b2c;
+            --accent-blue: #3b82f6;
+            --accent-yellow: #facc15;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --border-color: rgba(255, 255, 255, 0.1);
         }
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         body {
             background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            padding: 2rem;
-            background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0);
-            background-size: 40px 40px;
+            color: var(--text-primary);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            padding: 40px 20px;
+            line-height: 1.5;
         }
 
-        header {
+        .title {
             text-align: center;
-            margin-bottom: 4rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        header h1 {
-            font-size: 3rem;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
             font-weight: 800;
-            letter-spacing: -1.5px;
-            margin-bottom: 1rem;
+            letter-spacing: -1px;
+            background: linear-gradient(90deg, #fff, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        header h1 span.accent {
-            color: var(--accent-blue);
-            text-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
-        }
-
-        header p {
-            color: var(--text-dim);
-            font-size: 1.1rem;
-        }
-
-        /* Dashboard Grid */
         .container {
-            max-width: 1300px;
+            max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 20px;
         }
 
-        /* Card Styling */
         .card {
             background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 20px;
-            padding: 1.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
             text-decoration: none;
             color: inherit;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            transition: all 0.3s ease;
             position: relative;
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-            border-color: var(--accent-blue);
-            background: var(--hover-bg);
-            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
-        }
-
-        .card-tag {
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            background: rgba(56, 189, 248, 0.1);
-            color: var(--accent-blue);
-            padding: 5px 12px;
-            border-radius: 20px;
-            width: fit-content;
-            margin-bottom: 1.25rem;
-            letter-spacing: 0.5px;
-        }
-
-        .card h2 {
-            font-size: 1.2rem;
-            margin-bottom: 0.75rem;
-            color: var(--text-main);
-            line-height: 1.4;
-            font-weight: 600;
-        }
-
-        .count {
-            font-size: 0.9rem;
-            color: var(--text-dim);
-            margin-bottom: 2.5rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .count::before {
-            content: "•";
-            color: var(--accent-blue);
-            font-size: 1.5rem;
-        }
-
-        /* Special Highlighting */
-        .card.highlight {
-            border-color: rgba(251, 191, 36, 0.3);
-            background: linear-gradient(145deg, #1e293b 0%, #262f3f 100%);
-        }
-        
-        .card.highlight .card-tag {
-            background: rgba(251, 191, 36, 0.1);
-            color: var(--accent-yellow);
-        }
-
-        /* Progress Bar Section */
-        .card-footer {
-            border-top: 1px solid var(--card-border);
-            padding-top: 1.25rem;
-        }
-
-        .progress-label {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--text-dim);
-        }
-
-        .progress-bg {
-            height: 6px;
-            background: #0f172a;
-            border-radius: 10px;
             overflow: hidden;
         }
 
-        .progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, var(--accent-blue), #818cf8);
-            border-radius: 10px;
-            transition: width 1s ease-in-out;
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.5);
         }
 
-        /* Status Colors */
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 6px;
-            background: #475569;
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .card h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding-right: 20px;
+            color: var(--text-primary);
+        }
+
+        .arrow {
+            font-size: 1.5rem;
+            color: var(--accent-blue);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover .arrow {
+            transform: translateX(5px);
+        }
+
+        .count {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .progress-bg {
+            background: rgba(255, 255, 255, 0.05);
+            height: 6px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            background: var(--accent-blue);
+            width: 0%; /* Change this via JS or inline style if needed */
+            height: 100%;
+            border-radius: 10px;
+        }
+
+        .status {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            color: var(--text-secondary);
+        }
+
+        /* Special Highlighting for the 8th card */
+        .card.highlight {
+            border-color: rgba(250, 204, 21, 0.4);
+            background: linear-gradient(145deg, #161b2c 0%, #1e253a 100%);
+        }
+
+        .yellow-text {
+            color: var(--accent-yellow) !important;
+        }
+
+        .card.highlight .progress-bar {
+            background: var(--accent-yellow);
         }
 
         @media (max-width: 768px) {
-            body { padding: 1rem; }
-            header h1 { font-size: 2.2rem; }
-            .container { grid-template-columns: 1fr; }
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .title {
+                font-size: 1.8rem;
+            }
         }
     </style>
 </head>
 <body>
+    <h1 class="title">Database Management System</h1>
+    <div class="container">
+      <a href="first.html" class="card">
+        <div class="card-header">
+          <h2>Data Defination Language (DDL) Commands</h2>
+          <span class="arrow">&rsaquo;</span>
+        </div>
+        <p class="count">50 practice problems</p>
+        <div class="progress-bg"><div class="progress-bar"></div></div>
+        <span class="status">Not started</span>
+      </a>
 
-    <header>
-        <h1>DBMS <span class="accent">Curriculum</span></h1>
-        <p>A structured roadmap to mastering Database Management Systems and SQL through hands-on practice.</p>
-    </header>
+      <a href="second.html" class="card">
+        <div class="card-header">
+          <h2>Data Manipulation Language (DML) Commands</h2>
+          <span class="arrow">&rsaquo;</span>
+        </div>
+        <p class="count">30 practice problems</p>
+        <div class="progress-bg"><div class="progress-bar"></div></div>
+        <span class="status">Not started</span>
+      </a>
 
-    <main class="container">
-        <a href="first.html" class="card">
-            <div class="card-tag">Definition</div>
-            <div class="card-body">
-                <h2>Data Definition Language (DDL) Commands</h2>
-                <p class="count">50 practice problems</p>
-            </div>
-            <div class="card-footer">
-                <div class="progress-label">
-                    <span>Status</span>
-                    <span>0%</span>
-                </div>
-                <div class="progress-bg"><div class="progress-bar" style="width: 0%"></div></div>
-            </div>
-        </a>
+      <a href="third.html" class="card">
+        <div class="card-header">
+          <h2>Interview Questions: DML Commands</h2>
+          <span class="arrow">&rsaquo;</span>
+        </div>
+        <p class="count">20 practice problems</p>
+        <div class="progress-bg"><div class="progress-bar"></div></div>
+        <span class="status">Not started</span>
+      </a>
 
-        <a href="second.html" class="card">
-            <div class="card-tag">Manipulation</div>
-            <div class="card-body">
-                <h2>Data Manipulation Language (DML) Commands</h2>
-                <p class="count">30 practice problems</p>
-            </div>
-            <div class="card-footer">
-                <div class="progress-label">
-                    <span>Status</span>
-                    <span>0%</span>
-                </div>
-                <div class="progress-bg"><div class="progress-bar" style="width: 0%"></div></div>
-            </div>
-        </a>
+      <a href="fourth.html" class="card">
+        <div class="card-header">
+          <h2>Data Query Language (DQL): SELECT</h2>
+          <span class="arrow">&rsaquo;</span>
+        </div>
+        <p class="count">10 practice problems</p>
+        <div class="progress-bg"><div class="progress-bar"></div></div>
+        <span class="status">Not started</span>
+      </a>
 
-        <a href="third.html" class="card">
-            <div class="card-tag">Interview Prep</div>
-            <div class="card-body">
-                <h2>Interview Questions: DML Commands</h2>
-                <p class="count">20 practice problems</p>
-            </div>
-            <div class="card-footer">
-                <div class="progress-label">
-                    <span>Status</span>
-                    <span>0%</span>
-                </div>
-                <div class="progress-bg"><div class="progress-bar" style="width: 0%"></div></div>
-            </div>
-        </a>
+      <a href="fifth.html" class="card">
+        <div class="card-header">
+          <h2>Where Clause, Order By and Alias</h2>
+          <span class="arrow">&rsaquo;</span>
+        </div>
+        <p class="count">54 practice problems</p>
+        <div class="progress-bg"><div class="progress-bar"></div></div>
+        <span class="status">Not started</span>
+      </a>
 
-        <a href="eigth.html" class="card highlight">
-            <div class="card-tag">Advanced SQL</div>
-            <div class="card-body">
-                <h2>Subqueries: Single, Multiple Row & Correlated</h2>
-                <p class="count">69 practice problems</p>
-            </div>
-            <div class="card-footer">
-                <div class="progress-label">
-                    <span>Status</span>
-                    <span>In Progress</span>
-                </div>
-                <div class="progress-bg"><div class="progress-bar" style="width: 15%; background: var(--accent-yellow);"></div></div>
-            </div>
-        </a>
+      <a href="sixth.html" class="card">
+        <div class="card-header">
+          <h2>Pattern Matching Operator (LIKE)</h2>
+          <span class="arrow">&rsaquo;</span>
+        </div>
+        <p class="count">60 practice problems</p>
+        <div class="progress-bg"><div class="progress-bar"></div></div>
+        <span class="status">Not started</span>
+      </a>
 
-        <a href="eleventh.html" class="card">
-            <div class="card-tag">Relational</div>
-            <div class="card-body">
-                <h2>Joins: Inner, Outer, Cartesian & Full Outer</h2>
-                <p class="count">40 practice problems</p>
-            </div>
-            <div class="card-footer">
-                <div class="progress-label">
-                    <span>Status</span>
-                    <span>0%</span>
-                </div>
-                <div class="progress-bg"><div class="progress-bar" style="width: 0%"></div></div>
-            </div>
-        </a>
+      <a href="seventh.html" class="card">
+        <div class="card-header">
+          <h2>Group Functions, Group By Clause, Having Clause</h2>
+          <span class="arrow">&rsaquo;</span>
+        </div>
+        <p class="count">50 practice problems</p>
+        <div class="progress-bg"><div class="progress-bar"></div></div>
+        <span class="status">Not started</span>
+      </a>
 
-        <a href="sixteen.html" class="card">
-            <div class="card-tag">PL/SQL</div>
-            <div class="card-body">
-                <h2>PLSQL: Output, Datatypes, Variables & Constants</h2>
-                <p class="count">22 practice problems</p>
-            </div>
-            <div class="card-footer">
-                <div class="progress-label">
-                    <span>Status</span>
-                    <span>0%</span>
-                </div>
-                <div class="progress-bg"><div class="progress-bar" style="width: 0%"></div></div>
-            </div>
-        </a>
+      <a href="eigth.html" class="card highlight">
+        <div class="card-header">
+          <h2 class="yellow-text">
+            Subqueries: Single Row, Multiple Row, Corelated Subquery
+          </h2>
+          <span class="arrow">&rsaquo;</span>
+        </div>
+        <p class="count">69 practice problems</p>
+        <div class="progress-bg"><div class="progress-bar"></div></div>
+        <span class="status">Not started</span>
+      </a>
 
-        <a href="eighteen.html" class="card">
-            <div class="card-tag">PL/SQL Loops</div>
-            <div class="card-body">
-                <h2>Iterative Control: Simple, While & For Loops</h2>
-                <p class="count">32 practice problems</p>
-            </div>
-            <div class="card-footer">
-                <div class="progress-label">
-                    <span>Status</span>
-                    <span>0%</span>
-                </div>
-                <div class="progress-bg"><div class="progress-bar" style="width: 0%"></div></div>
-            </div>
-        </a>
+      <a href="nineth.html" class="card">
+        <div class="card-header">
+          <h2>Interview Questions: Subqueries</h2>
+          <span class="arrow">&rsaquo;</span>
+        </div>
+        <p class="count">24 practice problems</p>
+        <div class="progress-bg"><div class="progress-bar"></div></div>
+        <span class="status">Not started</span>
+      </a>
 
-    </main>
+      <a href="tenth.html" class="card">
+        <div class="card-header">
+          <h2>
+            SCALAR FUNCTION: DATE, NUMERIC, STRING, CONVERSION, GENERAL & NULL
+          </h2>
+          <span class="arrow">&rsaquo;</span>
+        </div>
+        <p class="count">60 practice problems</p>
+        <div class="progress-bg"><div class="progress-bar"></div></div>
+        <span class="status">Not started</span>
+      </a>
+
+      <a href="eleventh.html" class="card">
+        <div class="card-header">
+          <h2>
+            JOINS: INNER, CARTESIAN OR CROSS, LEFT OUTER, RIGHT OUTER, FULL
+            OUTER
+          </h2>
+          <span class="arrow">&rsaquo;</span>
+        </div>
+        <p class="count">40 practice problems</p>
+        <div class="progress-bg"><div class="progress-bar"></div></div>
+        <span class="status">Not started</span>
+      </a>
+
+      <a href="twelfth.html" class="card">
+        <div class="card-header">
+          <h2>INTERVIEW QUESTIONS: JOINS</h2>
+          <span class="arrow">&rsaquo;</span>
+        </div>
+        <p class="count">24 practice problems</p>
+        <div class="progress-bg"><div class="progress-bar"></div></div>
+        <span class="status">Not started</span>
+      </a>
+
+      <a href="thirteen.html" class="card">
+        <div class="card-header">
+          <h2>SET OPERATORS: UNION, UNION ALL, INTERSECT, MINUS</h2>
+          <span class="arrow">&rsaquo;</span>
+        </div>
+        <p class="count">25 practice problems</p>
+        <div class="progress-bg"><div class="progress-bar"></div></div>
+        <span class="status">Not started</span>
+      </a>
+
+      <a href="fourteen.html" class="card">
+        <div class="card-header">
+          <h2>VIEWS: CREATE, DROP, MATERLIZED</h2>
+          <span class="arrow">&rsaquo;</span>
+        </div>
+        <p class="count">35 practice problems</p>
+        <div class="progress-bg"><div class="progress-bar"></div></div>
+        <span class="status">Not started</span>
+      </a>
+
+      <a href="fifteen.html" class="card">
+        <div class="card-header">
+          <h2>TRANSACTION CONTROL LANGUAGE (TCL) and DATA CONTROL LANGUAGE (DCL)</h2>
+          <span class="arrow">&rsaquo;</span>
+        </div>
+        <p class="count">35 practice problems</p>
+        <div class="progress-bg"><div class="progress-bar"></div></div>
+        <span class="status">Not started</span>
+      </a>
+
+      <a href="sixteen.html" class="card">
+        <div class="card-header">
+          <h2>PLSQL: OUTPUT STATEMENT, DATATYPES, VARIABLES, CONSTANTS</h2>
+          <span class="arrow">&rsaquo;</span>
+        </div>
+        <p class="count">22 practice problems</p>
+        <div class="progress-bg"><div class="progress-bar"></div></div>
+        <span class="status">Not started</span>
+      </a>
+
+      <a href="seventeen.html" class="card">
+        <div class="card-header">
+          <h2>PLSQL: DECISION CONTROL STATEMENT: IF, IF-ELSE, IF-ELSIF-ELSE, CASE</h2>
+          <span class="arrow">&rsaquo;</span>
+        </div>
+        <p class="count">31 practice problems</p>
+        <div class="progress-bg"><div class="progress-bar"></div></div>
+        <span class="status">Not started</span>
+      </a>
+
+      <a href="eighteen.html" class="card">
+        <div class="card-header">
+          <h2>PLSQL: ITERATIVE CONTROL STATEMENT: SIMPLE LOOP, WHILE LOOP, FOR LOOP</h2>
+          <span class="arrow">&rsaquo;</span>
+        </div>
+        <p class="count">32 practice problems</p>
+        <div class="progress-bg"><div class="progress-bar"></div></div>
+        <span class="status">Not started</span>
+      </a>
+    </div>
 </body>
 </html>
