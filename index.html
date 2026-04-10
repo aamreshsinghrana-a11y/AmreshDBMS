@@ -5,81 +5,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Database Management System</title>
     <style>
+        /* Modern Theme Variables */
         :root {
-            --bg-color: #0b0f1a;
-            --card-bg: #161b2c;
-            --accent-blue: #3b82f6;
-            --accent-yellow: #facc15;
-            --text-primary: #f1f5f9;
-            --text-secondary: #94a3b8;
-            --border-color: rgba(255, 255, 255, 0.1);
+            --bg-dark: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --accent-blue: #38bdf8;
+            --accent-yellow: #fbbf24;
+            --text-white: #f8fafc;
+            --text-dim: #94a3b8;
+            --glass-border: rgba(255, 255, 255, 0.1);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* Global Styling */
         body {
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(251, 191, 36, 0.05) 0%, transparent 40%);
+            color: var(--text-white);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
             padding: 40px 20px;
-            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
         }
 
         .title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
+            font-size: 3rem;
             font-weight: 800;
-            letter-spacing: -1px;
-            background: linear-gradient(90deg, #fff, #3b82f6);
+            margin-bottom: 50px;
+            text-align: center;
+            background: linear-gradient(to right, #38bdf8, #818cf8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
         }
 
+        /* Dashboard Grid */
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+            max-width: 1200px;
+            width: 100%;
         }
 
+        /* Card Component */
         .card {
             background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
             padding: 24px;
             text-decoration: none;
             color: inherit;
             display: flex;
             flex-direction: column;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
         }
 
+        /* Hover Effects */
         .card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            background: rgba(30, 41, 59, 0.9);
             border-color: var(--accent-blue);
-            box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.5);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
         }
 
         .card-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
         }
 
         .card h2 {
             font-size: 1.1rem;
+            line-height: 1.4;
+            margin: 0;
             font-weight: 600;
-            padding-right: 20px;
-            color: var(--text-primary);
+            color: var(--text-white);
         }
 
         .arrow {
@@ -93,23 +102,26 @@
         }
 
         .count {
-            color: var(--text-secondary);
             font-size: 0.9rem;
-            margin-bottom: 20px;
+            color: var(--text-dim);
+            margin-bottom: 24px;
+            font-weight: 500;
         }
 
+        /* Progress Bar Styling */
         .progress-bg {
-            background: rgba(255, 255, 255, 0.05);
-            height: 6px;
+            background: rgba(15, 23, 42, 0.6);
+            height: 8px;
             border-radius: 10px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            overflow: hidden;
         }
 
         .progress-bar {
-            background: var(--accent-blue);
-            width: 0%; /* Change this via JS or inline style if needed */
             height: 100%;
-            border-radius: 10px;
+            background: linear-gradient(90deg, var(--accent-blue), #818cf8);
+            width: 0%; /* Initial state */
+            transition: width 1s ease-in-out;
         }
 
         .status {
@@ -117,13 +129,13 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             font-weight: 700;
-            color: var(--text-secondary);
+            color: var(--text-dim);
         }
 
-        /* Special Highlighting for the 8th card */
+        /* Logic for Highlight (8th Card) */
         .card.highlight {
-            border-color: rgba(250, 204, 21, 0.4);
-            background: linear-gradient(145deg, #161b2c 0%, #1e253a 100%);
+            border-color: rgba(251, 191, 36, 0.3);
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.8));
         }
 
         .yellow-text {
@@ -134,13 +146,10 @@
             background: var(--accent-yellow);
         }
 
+        /* Mobile Optimization */
         @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
-            .title {
-                font-size: 1.8rem;
-            }
+            .title { font-size: 2rem; }
+            .container { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -263,7 +272,6 @@
         <div class="progress-bg"><div class="progress-bar"></div></div>
         <span class="status">Not started</span>
       </a>
-
       <a href="twelfth.html" class="card">
         <div class="card-header">
           <h2>INTERVIEW QUESTIONS: JOINS</h2>
@@ -273,7 +281,6 @@
         <div class="progress-bg"><div class="progress-bar"></div></div>
         <span class="status">Not started</span>
       </a>
-
       <a href="thirteen.html" class="card">
         <div class="card-header">
           <h2>SET OPERATORS: UNION, UNION ALL, INTERSECT, MINUS</h2>
@@ -283,7 +290,6 @@
         <div class="progress-bg"><div class="progress-bar"></div></div>
         <span class="status">Not started</span>
       </a>
-
       <a href="fourteen.html" class="card">
         <div class="card-header">
           <h2>VIEWS: CREATE, DROP, MATERLIZED</h2>
@@ -293,7 +299,6 @@
         <div class="progress-bg"><div class="progress-bar"></div></div>
         <span class="status">Not started</span>
       </a>
-
       <a href="fifteen.html" class="card">
         <div class="card-header">
           <h2>TRANSACTION CONTROL LANGUAGE (TCL) and DATA CONTROL LANGUAGE (DCL)</h2>
@@ -303,7 +308,6 @@
         <div class="progress-bg"><div class="progress-bar"></div></div>
         <span class="status">Not started</span>
       </a>
-
       <a href="sixteen.html" class="card">
         <div class="card-header">
           <h2>PLSQL: OUTPUT STATEMENT, DATATYPES, VARIABLES, CONSTANTS</h2>
@@ -313,7 +317,6 @@
         <div class="progress-bg"><div class="progress-bar"></div></div>
         <span class="status">Not started</span>
       </a>
-
       <a href="seventeen.html" class="card">
         <div class="card-header">
           <h2>PLSQL: DECISION CONTROL STATEMENT: IF, IF-ELSE, IF-ELSIF-ELSE, CASE</h2>
@@ -323,7 +326,6 @@
         <div class="progress-bg"><div class="progress-bar"></div></div>
         <span class="status">Not started</span>
       </a>
-
       <a href="eighteen.html" class="card">
         <div class="card-header">
           <h2>PLSQL: ITERATIVE CONTROL STATEMENT: SIMPLE LOOP, WHILE LOOP, FOR LOOP</h2>
